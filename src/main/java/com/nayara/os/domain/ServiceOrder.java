@@ -18,14 +18,16 @@ public class ServiceOrder {
 
 	public ServiceOrder() {
 		super();
+		this.setCreated_at(LocalDateTime.now());
+		this.setPriority(Priority.LOW);
+		this.setStatus(Status.OPEN);
 	}
 
-	public ServiceOrder(Integer id, LocalDateTime created_at, LocalDateTime closed_on, Priority priority,
+	public ServiceOrder(Integer id, LocalDateTime created_at, Priority priority,
 			String obeservations, Status status, Technique tecnhinque, Client client) {
 		super();
 		this.id = id;
-		this.created_at = created_at;
-		this.closed_on = closed_on;
+		this.setCreated_at(LocalDateTime.now());
 		this.priority = (priority == null) ? 0 : priority.getCod();
 		this.obeservations = obeservations;
 		this.status = (status == null) ? 0 : status.getCod();
