@@ -1,10 +1,23 @@
 package com.nayara.os.domain;
 
-public abstract class Person {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+@Entity(name = "person")
+public abstract class Person {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String name;
+	@CPF
 	private String cpf;
+	
 	private String phone;
 
 	public Person() {

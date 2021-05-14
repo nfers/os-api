@@ -2,18 +2,40 @@ package com.nayara.os.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nayara.os.domain.enums.Priority;
 import com.nayara.os.domain.enums.Status;
 
+@Entity(name = "serviceOrder")
 public class ServiceOrder {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
 	private LocalDateTime created_at;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
 	private LocalDateTime closed_on;
+	
 	private String obeservations;
 	private Integer priority;
 	private Integer status;
-	private Technique tecnhinque;
+	
+	@ManyToOne
+	@JoinColumn(name = "technique_id")
+	private Technique technique;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 
 	public ServiceOrder() {
@@ -21,17 +43,17 @@ public class ServiceOrder {
 		this.setCreated_at(LocalDateTime.now());
 		this.setPriority(Priority.LOW);
 		this.setStatus(Status.OPEN);
+		
 	}
 
-	public ServiceOrder(Integer id, LocalDateTime created_at, Priority priority,
-			String obeservations, Status status, Technique tecnhinque, Client client) {
+	public ServiceOrder(Integer id, Priority priority, String obeservations, Status status, Technique technique, Client client) {
 		super();
 		this.id = id;
 		this.setCreated_at(LocalDateTime.now());
 		this.priority = (priority == null) ? 0 : priority.getCod();
 		this.obeservations = obeservations;
 		this.status = (status == null) ? 0 : status.getCod();
-		this.tecnhinque = tecnhinque;
+		this.technique = technique;
 		this.client = client;
 	}
 
@@ -39,60 +61,60 @@ public class ServiceOrder {
 		return id;
 	}
 
-	public LocalDateTime getCreated_at() {
-		return created_at;
-	}
-
-	public LocalDateTime getClosed_on() {
-		return closed_on;
-	}
-
-	public Priority getPriority() {		
-		return Priority.toEnum(this.priority);
-	}
-
-	public String getObeservations() {
-		return obeservations;
-	}
-
-	public Status getStatus() {
-	return Status.toEnum(this.priority);
-	}
-
-	public Technique getTecnhinque() {
-		return tecnhinque;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getCreated_at() {
+		return created_at;
 	}
 
 	public void setCreated_at(LocalDateTime created_at) {
 		this.created_at = created_at;
 	}
 
+	public LocalDateTime getClosed_on() {
+		return closed_on;
+	}
+
 	public void setClosed_on(LocalDateTime closed_on) {
 		this.closed_on = closed_on;
+	}
+
+	public Priority getPriority() {
+		return Priority.toEnum(this.priority);
 	}
 
 	public void setPriority(Priority priority) {
 		this.priority = priority.getCod();
 	}
 
+	public String getObeservations() {
+		return obeservations;
+	}
+
 	public void setObeservations(String obeservations) {
 		this.obeservations = obeservations;
+	}
+
+	public Status getStatus() {
+		return Status.toEnum(this.status);
 	}
 
 	public void setStatus(Status status) {
 		this.status = status.getCod();
 	}
 
-	public void setTecnhinque(Technique tecnhinque) {
-		this.tecnhinque = tecnhinque;
+	public Technique getTechnique() {
+		return technique;
+	}
+
+	public void settechnique(Technique technique) {
+		this.technique = technique;
+	}
+
+	public Client getClient() {
+		return client;
 	}
 
 	public void setClient(Client client) {
