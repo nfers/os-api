@@ -1,5 +1,6 @@
 package com.nayara.os.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,10 @@ public class TechniqueService {
 		Optional<Technique> obj = repository.findById(id);
 		
 		return obj.orElse(null);
+	}
+	
+	public List<Technique> findAll() {
+		List<Technique> tech = repository.findAll();
+		return tech;
 	}
 }

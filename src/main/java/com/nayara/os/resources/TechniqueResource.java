@@ -1,5 +1,7 @@
 package com.nayara.os.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,13 @@ public class TechniqueResource {
 	public ResponseEntity<Technique> findById(@PathVariable Integer id) {
 		
 		Technique obj = service.findById(id);
+		
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Technique>> findAll() {
+		List<Technique> obj = service.findAll();
 		
 		return ResponseEntity.ok().body(obj);
 	}
