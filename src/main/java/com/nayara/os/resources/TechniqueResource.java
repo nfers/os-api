@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nayara.os.domain.Technique;
+import com.nayara.os.dtos.TechniqueDTO;
 import com.nayara.os.services.TechniqueService;
 
 @RestController
@@ -19,11 +20,13 @@ public class TechniqueResource {
 	private TechniqueService service;
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Technique> findById(@PathVariable Integer id) {
+	public ResponseEntity<TechniqueDTO> findById(@PathVariable Integer id) {
 		
 		Technique obj = service.findById(id);
 		
-		return ResponseEntity.ok().body(obj);
+		TechniqueDTO objDTO = new TechniqueDTO(obj);
+		
+		return ResponseEntity.ok().body(objDTO);
 	}
 	
 	@GetMapping
