@@ -38,13 +38,6 @@ public class ServiceOrder {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
-	public ServiceOrder() {
-		super();
-		this.setCreated_at(LocalDateTime.now());
-		this.setPriority(Priority.LOW);
-		this.setStatus(Status.OPEN);
-		
-	}
 
 	public ServiceOrder(Integer id, Priority priority, String obeservations, Status status, Technique technique, Client client) {
 		super();
