@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nayara.os.domain.Technique;
 import com.nayara.os.repositories.TechniqueRepository;
+import com.nayara.os.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TechniqueService {
@@ -18,7 +19,8 @@ public class TechniqueService {
 	public Technique findById(Integer id) {
 		Optional<Technique> obj = repository.findById(id);
 		
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontado! Id: " + id + ", Tipo: " + Technique.class.getName()));
 	}
 	
 	public List<Technique> findAll() {
