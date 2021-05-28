@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 import com.nayara.os.domain.Technique;
 import com.nayara.os.dtos.TechniqueDTO;
 import com.nayara.os.services.TechniqueService;
@@ -19,6 +21,7 @@ public class TechniqueResource {
 	@Autowired
 	private TechniqueService service;
 	
+	@ApiOperation(value = "Insere uma Avaliação", notes = "Insere uma Avaliação", response = Technique.class )
 	@GetMapping(value="/{id}")
 	public ResponseEntity<TechniqueDTO> findById(@PathVariable Integer id) {
 		
