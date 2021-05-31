@@ -44,8 +44,17 @@ public class TechniqueService {
 	}
 
 	public Technique update(Integer id, @Valid TechniqueDTO objDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		Technique oldObj = findById(id);
+		
+		if (findByCPF(objDTO) != null && findByCPF(objDTO).getId() != id) {
+			throw new DataIntegratyViolationException("CPF já cadastrado na base de dados!");
+		}
+		
+		oldObj.setName(objDTO.getName());
+		oldObj.setPhone(objDTO.getPhone());
+		oldObj.setCpf(objDTO.getCpf());
+		
+		return repository.save(oldObj);
 	}
 
 	

@@ -68,7 +68,8 @@ public class TechniqueResource {
 	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id,@Valid @RequestBody TechniqueDTO objDTO) {
 		
 		TechniqueDTO newObj = new TechniqueDTO(service.update(id, objDTO));
-		return null;
+		
+		return ResponseEntity.ok().body(newObj);
 		
 	}
 
