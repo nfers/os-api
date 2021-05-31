@@ -1,7 +1,7 @@
 package com.nayara.os.services.exceptions;
 
-public class ObjectNotFoundException extends RuntimeException {
 
+public class ObjectNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	public ObjectNotFoundException(String message, Throwable cause) {
@@ -11,4 +11,3 @@ public class ObjectNotFoundException extends RuntimeException {
 	public ObjectNotFoundException(String message) {
 		super(message);
 	}
-}
