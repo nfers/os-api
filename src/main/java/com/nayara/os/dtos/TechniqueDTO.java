@@ -2,6 +2,8 @@ package com.nayara.os.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.nayara.os.domain.Technique;
@@ -11,10 +13,14 @@ public class TechniqueDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	
+	@NotEmpty(message = "Campo nome precisa ser informado")
 	private String name;
+	
+	@NotEmpty(message = "Campo CPF precisa ser informado")
 	@CPF
 	private String cpf;
-	
+
+	@NotEmpty(message = "Campo Telefone precisa ser informado")
 	private String phone;
 
 	public TechniqueDTO() {
