@@ -35,7 +35,7 @@ public class SwaggerConfig {
     }
 
     private Predicate<RequestHandler> apis() {
-        return RequestHandlerSelectors.basePackage("com.nayara.os.resources");
+        return (Predicate<RequestHandler>) RequestHandlerSelectors.basePackage("com.nayara.os.resources");
     }
 
     private ApiInfo apiInfo() {
@@ -47,7 +47,7 @@ public class SwaggerConfig {
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
                 .termsOfServiceUrl("/service.html")
                 .version("1.0.0")
-                .contact(new Contact("Nayara Ferreira","github.com/nfers", "ncy.fers@gmail.com"))
+                .contact(new Contact("Nayara Ferreira","https://github.com/nfers/os-api", "ncy.fers@gmail.com"))
                 .build();
  
         return apiInfo;

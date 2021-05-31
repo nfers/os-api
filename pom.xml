@@ -8,15 +8,17 @@
 		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>com.nayara</groupId>
 	<artifactId>os</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>os</name>
+	
 	<description>Project developed during the FullStack Developer course - Valdir Cezar</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>11</java.version>
+		<java.version>15</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

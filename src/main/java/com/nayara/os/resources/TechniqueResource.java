@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +62,14 @@ public class TechniqueResource {
 
 		log.info("RESOURCE - RETORNANDO RESPOSTA PARA REQUISIÇÃO " + newObj.getId());
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id,@Valid @RequestBody TechniqueDTO objDTO) {
+		
+		TechniqueDTO newObj = new TechniqueDTO(service.update(id, objDTO));
+		return null;
+		
 	}
 
 	@DeleteMapping(value = "/{id}")
