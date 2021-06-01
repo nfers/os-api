@@ -7,9 +7,9 @@ jdk:
 
 #install:
 #- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-script:
-- mvn test
-#addons:
+before_install:
+  - chmod +x mvnw
+  #addons:
 #  apt: 
 ##   packages:
 ##      - oracle-java9-installer
