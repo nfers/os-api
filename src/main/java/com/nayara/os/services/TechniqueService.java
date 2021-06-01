@@ -66,4 +66,15 @@ public class TechniqueService {
 	 	}
 	 	return null;
 	 }
+
+	public void delete(Integer id) {
+		
+		Technique obj = findById(id);
+		
+		if(obj.getList().size() > 0 ) {
+			 throw new DataIntegratyViolationException("Técnico possui ordem de serviço vinculada");
+		}
+		 
+		repository.deleteById(id);
+	}
 }

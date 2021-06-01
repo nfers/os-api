@@ -77,7 +77,7 @@ public class TechniqueResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		log.info("RESOURCE - DELETANDO TÉCNICO");
 
-		
+		service.delete(id);
 		
 		log.info("RESOURCE - RETORNANDO RESPOSTA PARA REQUISIÇÃO");
 		return ResponseEntity.noContent().build();
