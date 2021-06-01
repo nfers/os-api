@@ -8,7 +8,7 @@ jdk:
 install:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-- mvn spring-boot:run
+- mvn test
 #addons:
 #  apt: 
 ##   packages:
