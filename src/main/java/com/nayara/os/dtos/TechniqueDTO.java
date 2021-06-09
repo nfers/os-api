@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.nayara.os.domain.Technique;
 
-public class TechniqueDTO  implements Serializable{
+public class TechniqueDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer id;

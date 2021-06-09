@@ -2,6 +2,8 @@ package com.nayara.os.resources;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +25,12 @@ public class ServiceOrderResource {
 	ServiceOrderService service;
 	
 	@GetMapping
-	public ResponseEntity<List<ServiceOrder>> findAll() {
-		List<ServiceOrder> obj = service.findAll();
+	public ResponseEntity<List<ServiceOrderDTO>> findAll() {
+		List<ServiceOrderDTO> list = service.findAll()
+				.stream()
+				.map(obj -> new ServiceOrderDTO(obj)).collect(Collectors.toList());
 		
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping("/{id}")
