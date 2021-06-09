@@ -25,7 +25,6 @@ public class Technique extends Person implements Serializable {
 
 	public Technique(Integer id, String name, String cpf, String phone) {
 		super(id, name, cpf, phone);
-
 	}
 
 	public List<ServiceOrder> getList() {

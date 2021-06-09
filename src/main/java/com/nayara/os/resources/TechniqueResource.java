@@ -35,7 +35,7 @@ public class TechniqueResource {
 	@Autowired
 	private TechniqueService service;
 	
-	@ApiOperation(value = "Insere uma Avaliação", notes = "Insere uma Avaliação", response = Technique.class )
+	@ApiOperation(value = "Busca Técnico por ID", notes = "Busca Técnico por ID", response = Technique.class )
 	@GetMapping(value="/{id}")
 	public ResponseEntity<TechniqueDTO> findById(@PathVariable Integer id) {
 		

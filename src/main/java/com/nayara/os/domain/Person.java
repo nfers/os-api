@@ -10,19 +10,18 @@ import javax.persistence.Id;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity(name = "person")
-public abstract class Person implements Serializable{
-	
-	
+public abstract class Person implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String name;
 	@CPF
 	private String cpf;
-	
+
 	private String phone;
 
 	public Person() {
