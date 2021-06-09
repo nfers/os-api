@@ -8,8 +8,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nayara.os.domain.Person;
 import com.nayara.os.domain.Technique;
 import com.nayara.os.dtos.TechniqueDTO;
+import com.nayara.os.repositories.PersonRepository;
 import com.nayara.os.repositories.TechniqueRepository;
 import com.nayara.os.services.exceptions.DataIntegratyViolationException;
 import com.nayara.os.services.exceptions.ObjectNotFoundException;
@@ -19,6 +21,9 @@ public class TechniqueService {
 	
 	@Autowired
 	private TechniqueRepository repository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 	
 	public Technique findById(Integer id) {
 		Optional<Technique> obj = repository.findById(id);
@@ -58,9 +63,9 @@ public class TechniqueService {
 	}
 
 	
-	private Technique findByCPF(TechniqueDTO objDTO) {
+	private Person findByCPF(TechniqueDTO objDTO) {
      //log.info("SERVICE - ANALIZANDO SE O CPF ESTÁ CADASTRADO NO BANCO");
-		Technique obj = repository.findByCPF(objDTO.getCpf());
+		Person obj = personRepository.findByCPF(objDTO.getCpf());
 	 	if (obj != null) {
 	 		return obj;
 	 	}
