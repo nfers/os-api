@@ -65,12 +65,12 @@ public class TechniqueResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id,@Valid @RequestBody TechniqueDTO objDTO) {
-		
+	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id, @Valid @RequestBody TechniqueDTO objDTO) {
+
 		TechniqueDTO newObj = new TechniqueDTO(service.update(id, objDTO));
-		
+
 		return ResponseEntity.ok().body(newObj);
-		
+
 	}
 
 	@DeleteMapping(value = "/{id}")

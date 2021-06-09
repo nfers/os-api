@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nayara.os.domain.Client;
 import com.nayara.os.domain.Person;
@@ -15,6 +16,7 @@ import com.nayara.os.repositories.ClientRepository;
 import com.nayara.os.services.exceptions.DataIntegratyViolationException;
 import com.nayara.os.services.exceptions.ObjectNotFoundException;
 
+@Service
 public class ClientService {
 
 	@Autowired
