@@ -61,7 +61,6 @@ public class TechniqueService {
 		
 		return repository.save(oldObj);
 	}
-
 	
 	private Person findByCPF(TechniqueDTO objDTO) {
      //log.info("SERVICE - ANALIZANDO SE O CPF ESTÁ CADASTRADO NO BANCO");
