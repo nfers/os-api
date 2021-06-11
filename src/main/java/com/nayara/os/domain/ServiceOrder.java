@@ -8,12 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nayara.os.domain.enums.Priority;
 import com.nayara.os.domain.enums.Status;
 
-@Entity(name = "serviceOrder")
+@Entity(name = "serviceorder")
 public class ServiceOrder {
 	
 	@Id
@@ -26,6 +27,7 @@ public class ServiceOrder {
 	@JsonFormat(pattern = "dd/MM/yyyy - HH:mm")
 	private LocalDateTime closed_on;
 	
+	@NotEmpty(message = "Campo não pode ser vazio")
 	private String obeservations;
 	private Integer priority;
 	private Integer status;
@@ -38,6 +40,9 @@ public class ServiceOrder {
 	@JoinColumn(name = "client_id")
 	private Client client;
 
+	public ServiceOrder() {
+		
+	}
 
 	public ServiceOrder(Integer id, Priority priority, String obeservations, Status status, Technique technique, Client client) {
 		super();
