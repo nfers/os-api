@@ -1,6 +1,7 @@
 package com.nayara.os.resources;
 
 import java.util.List;
+import java.net.URI;
 import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.nayara.os.domain.Client;
 import com.nayara.os.domain.ServiceOrder;
@@ -48,10 +50,11 @@ public class ServiceOrderResource {
 	
 	@PostMapping
 	public ResponseEntity<ServiceOrderDTO> createServiceOrder(@Valid @RequestBody ServiceOrderDTO obj) {
+		obj = new ServiceOrderDTO(service.create(obj));
+		
+		URI uri =  ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
-		
-		return null;
-		
+		return ResponseEntity.created(uri).build();
 	}
 	
 }
