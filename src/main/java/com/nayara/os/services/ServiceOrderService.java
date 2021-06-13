@@ -65,4 +65,10 @@ public class ServiceOrderService {
 	
 	}
 
+	public ServiceOrder update(@Valid ServiceOrderDTO obj) {
+		findById(obj.getId());
+				
+		return fromDTO(obj);
+	}
+
 }
