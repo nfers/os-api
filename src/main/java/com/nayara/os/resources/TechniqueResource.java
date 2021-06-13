@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.nayara.os.domain.Technique;
 import com.nayara.os.dtos.TechniqueDTO;
 import com.nayara.os.services.TechniqueService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/technique")
 public class TechniqueResource {
@@ -35,7 +37,7 @@ public class TechniqueResource {
 	@Autowired
 	private TechniqueService service;
 	
-	@ApiOperation(value = "Insere uma Avaliação", notes = "Insere uma Avaliação", response = Technique.class )
+	@ApiOperation(value = "Busca Técnico por ID", notes = "Busca Técnico por ID", response = Technique.class )
 	@GetMapping(value="/{id}")
 	public ResponseEntity<TechniqueDTO> findById(@PathVariable Integer id) {
 		
@@ -65,18 +67,19 @@ public class TechniqueResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id,@Valid @RequestBody TechniqueDTO objDTO) {
-		
+	public ResponseEntity<TechniqueDTO> update(@PathVariable Integer id, @Valid @RequestBody TechniqueDTO objDTO) {
+
 		TechniqueDTO newObj = new TechniqueDTO(service.update(id, objDTO));
-		return null;
-		
+
+		return ResponseEntity.ok().body(newObj);
+
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		log.info("RESOURCE - DELETANDO TÉCNICO");
 
-		
+		service.delete(id);
 		
 		log.info("RESOURCE - RETORNANDO RESPOSTA PARA REQUISIÇÃO");
 		return ResponseEntity.noContent().build();

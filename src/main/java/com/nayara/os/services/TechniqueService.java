@@ -8,8 +8,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nayara.os.domain.Person;
 import com.nayara.os.domain.Technique;
 import com.nayara.os.dtos.TechniqueDTO;
+import com.nayara.os.repositories.PersonRepository;
 import com.nayara.os.repositories.TechniqueRepository;
 import com.nayara.os.services.exceptions.DataIntegratyViolationException;
 import com.nayara.os.services.exceptions.ObjectNotFoundException;
@@ -19,6 +21,9 @@ public class TechniqueService {
 	
 	@Autowired
 	private TechniqueRepository repository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 	
 	public Technique findById(Integer id) {
 		Optional<Technique> obj = repository.findById(id);
@@ -44,17 +49,36 @@ public class TechniqueService {
 	}
 
 	public Technique update(Integer id, @Valid TechniqueDTO objDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		Technique oldObj = findById(id);
+		
+		if (findByCPF(objDTO) != null && findByCPF(objDTO).getId() != id) {
+			throw new DataIntegratyViolationException("CPF já cadastrado na base de dados!");
+		}
+		
+		oldObj.setName(objDTO.getName());
+		oldObj.setPhone(objDTO.getPhone());
+		oldObj.setCpf(objDTO.getCpf());
+		
+		return repository.save(oldObj);
 	}
-
 	
-	private Technique findByCPF(TechniqueDTO objDTO) {
+	private Person findByCPF(TechniqueDTO objDTO) {
      //log.info("SERVICE - ANALIZANDO SE O CPF ESTÁ CADASTRADO NO BANCO");
-		Technique obj = repository.findByCPF(objDTO.getCpf());
+		Person obj = personRepository.findByCPF(objDTO.getCpf());
 	 	if (obj != null) {
 	 		return obj;
 	 	}
 	 	return null;
 	 }
+
+	public void delete(Integer id) {
+		
+		Technique obj = findById(id);
+		
+		if(obj.getList().size() > 0 ) {
+			 throw new DataIntegratyViolationException("Técnico possui ordem de serviço vinculada");
+		}
+		 
+		repository.deleteById(id);
+	}
 }
