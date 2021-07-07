@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import com.nayara.os.domain.Client;
 import com.nayara.os.domain.ServiceOrder;
 import com.nayara.os.domain.Technique;
+import com.nayara.os.domain.enums.Priority;
+import com.nayara.os.domain.enums.Status;
 
 public class ServiceOrderDTO  implements Serializable {
 	
@@ -67,16 +69,16 @@ public class ServiceOrderDTO  implements Serializable {
 		this.obeservations = obeservations;
 	}
 
-	public Integer getPriority() {
-		return priority;
+	public Priority getPriority() {
+		return Priority.toEnum(this.priority);
 	}
 
 	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public Status getStatus() {
+		return Status.toEnum(this.status);
 	}
 
 	public void setStatus(Integer status) {
